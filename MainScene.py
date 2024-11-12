@@ -10,11 +10,11 @@ camera_pos = [0.0, -5, -20] # Starting Camera position
 camera_rot = [0.0, 0.0] # for rotation
 
 def opengl():
-    glClearColor(0.5, 0.8, 1, 1) # Set sky color
+    glClearColor(0.5, 0.8, 1, 1)  # Set sky color
     glEnable(GL_DEPTH_TEST)
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
-    gluPerspective(45, 800/600, 0.1, 50.0)
+    gluPerspective(45, 800 / 600, 0.1, 100.0)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
     update_camera()
@@ -74,6 +74,7 @@ def main():
         update_camera()
 
         # Draw Scenes
+        glColor3f(1.0, 1.0, 1.0)
         draw_ground(texture)
 
         pygame.display.flip()

@@ -4,6 +4,7 @@ from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from background import *
+from objects import *
 
 # Define camera positions and angles
 camera_pos = [0.0, -5, -20] # Starting Camera position
@@ -73,9 +74,12 @@ def main():
         handle_camera_movement()
         update_camera()
 
-        # Draw Scenes
+        # Draw Scenes / Objects
         glColor3f(1.0, 1.0, 1.0)
         draw_ground(texture)
+        draw_tree(0,0,0)
+        draw_tree(10,0,10)
+        draw_tree(-5,0,-5)
 
         pygame.display.flip()
         pygame.time.wait(10)

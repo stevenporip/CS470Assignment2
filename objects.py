@@ -33,3 +33,18 @@ def draw_tree(x, y, z):
     # Pop when tree is completed
     glPopMatrix()
 
+def draw_street():
+    glPushMatrix()
+    glTranslatef(0, .1, 25) 
+    glScalef(50, 0.2, 4)  
+    glColor3f(0.3, 0.3, 0.3)  # Gray
+
+    glBegin(GL_QUADS)
+    glVertex3f(-1, 0, -1)
+    glVertex3f(1, 0, -1)
+    glVertex3f(1, 0, 1)
+    glVertex3f(-1, 0, 1)
+    glEnd()
+
+    glPopMatrix()
+

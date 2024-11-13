@@ -55,8 +55,8 @@ def main():
     # Initialize Game
     pygame.init()
     # Set Display window size
-    display = (1920, 1080)
-    pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
+    display = (800, 800)
+    pygame.display.set_mode(display, DOUBLEBUF | OPENGL | RESIZABLE)
 
     opengl() # Set up OpenGl
 
@@ -77,6 +77,7 @@ def main():
         # Draw Scenes / Objects
         glColor3f(1.0, 1.0, 1.0)
         draw_ground(texture)
+        draw_street()
         draw_tree(0,0,0)
         draw_tree(10,0,10)
         draw_tree(-5,0,-5)

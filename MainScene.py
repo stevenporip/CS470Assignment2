@@ -62,6 +62,7 @@ def main():
 
     # Load Textures
     texture = load_texture('assets/ground_texture.jpg') # Ground Texture
+    texture2 = load_texture('assets/water_texture.jpg') # Water Texture
 
     while True:
         for event in pygame.event.get():
@@ -77,6 +78,7 @@ def main():
         # Draw Scenes / Objects
         glColor3f(1.0, 1.0, 1.0)
         draw_ground(texture)
+        draw_water(texture2)
         draw_street()
         draw_tree(0,0,0)
         draw_tree(10,0,10)

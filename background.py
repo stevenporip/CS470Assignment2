@@ -23,3 +23,15 @@ def draw_ground(texture):
     glTexCoord2f(1, 1); glVertex3f(50, 0, 50)
     glTexCoord2f(0, 1); glVertex3f(-50, 0, 50)
     glEnd()
+
+def draw_water(texture):
+    glPushMatrix()
+    glTranslatef(0, 0.1, 70)  
+    glBindTexture(GL_TEXTURE_2D, texture)
+    glBegin(GL_QUADS)
+    glTexCoord2f(0, 0); glVertex3f(-50, 0, -30)
+    glTexCoord2f(1, 0); glVertex3f(50, 0, -30)
+    glTexCoord2f(1, 1); glVertex3f(50, 0, 30)
+    glTexCoord2f(0, 1); glVertex3f(-50, 0, 30)
+    glEnd()
+    glPopMatrix()

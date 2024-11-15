@@ -4,12 +4,12 @@ from pygame.locals import *
 from OpenGL.GLU import *
 
 
-def draw_house(x, y, z):
+def draw_house(x, y, z, color):
     glTranslatef(x, y, z)
-    front()
-    back()
-    side_right()
-    side_left()
+    front(color)
+    back(color)
+    side_right(color)
+    side_left(color)
     roof_front()
     roof_back()
     roof_rightside()
@@ -19,9 +19,9 @@ def draw_house(x, y, z):
     window_left()
     window_right()
 
-def back():
+def back(color):
 
-    glColor(0.9, 0.7, 0.9)
+    glColor(color)
     glBegin(GL_POLYGON)
     glVertex3f(1, 10, 0)
     glVertex3f(1, 0, 0)
@@ -29,9 +29,9 @@ def back():
     glVertex3f(15, 10, 0)
     glEnd()
 
-def front():
+def front(color):
 
-    glColor(0.9, 0.7, 0.9)
+    glColor(color)
     glBegin(GL_POLYGON)
     glVertex3f(1, 10, 10)
     glVertex3f(1, 0, 10)
@@ -39,8 +39,8 @@ def front():
     glVertex3f(15, 10, 10)
     glEnd()
 
-def side_right():
-    glColor(0.9, 0.7, 0.9)
+def side_right(color):
+    glColor(color)
     glBegin(GL_POLYGON)
     glVertex3f(1, 10, 0)
     glVertex3f(1, 0, 0)
@@ -48,8 +48,8 @@ def side_right():
     glVertex3f(1, 10, 10)
     glEnd()
 
-def side_left():
-    glColor(0.9, 0.7, 0.9)
+def side_left(color):
+    glColor(color)
     glBegin(GL_POLYGON)
     glVertex3f(15, 0, 10)
     glVertex3f(15, 0, 0)
@@ -102,7 +102,7 @@ def front_door():
     glEnd()
 
 def window_left():
-    glColor3f(0, 0, 1)
+    glColor4f(0.6, 0.8, 1.0, 0.5)
     glBegin(GL_POLYGON)
     glVertex3f(2, 6, 10.1)
     glVertex3f(5, 6, 10.1)
@@ -111,7 +111,7 @@ def window_left():
     glEnd()
   
 def window_right():
-    glColor3f(0, 0, 1)
+    glColor4f(0.6, 0.8, 1.0, 0.5)
     glBegin(GL_POLYGON)
     glVertex3f(9, 6, 10.1)
     glVertex3f(12, 6, 10.1)

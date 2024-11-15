@@ -85,8 +85,8 @@ def main():
         draw_tree(0,0,0)
         draw_tree(10,0,10)
         draw_tree(-5,0,-5)
-        draw_house(-25, 0, 0)
-
+        draw_house(-25, 0, 0, (0.88, 0.77, 0.91))
+        draw_house(-25, 0, 0, (0.75, 0.91, 0.91))
         pygame.display.flip()
         pygame.time.wait(10)
 

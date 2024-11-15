@@ -35,7 +35,7 @@ def draw_tree(x, y, z):
 
 def draw_street():
     glPushMatrix()
-    glTranslatef(0, .1, 25) 
+    glTranslatef(0, .2, -40) 
     glScalef(50, 0.2, 4)  
     glColor3f(0.3, 0.3, 0.3)  # Gray
 

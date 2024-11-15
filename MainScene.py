@@ -5,6 +5,8 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from background import *
 from objects import *
+from house_reg import *
+
 
 # Define camera positions and angles
 camera_pos = [0.0, -5, -20] # Starting Camera position
@@ -83,6 +85,7 @@ def main():
         draw_tree(0,0,0)
         draw_tree(10,0,10)
         draw_tree(-5,0,-5)
+        draw_house(-25, 0, 0)
 
         pygame.display.flip()
         pygame.time.wait(10)

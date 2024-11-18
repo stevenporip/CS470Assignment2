@@ -9,16 +9,20 @@ from house_reg import *
 from car import *
 
 
+
 # Define camera positions and angles
-camera_pos = [0.0, -5, -20] # Starting Camera position
+camera_pos = [29, -19, -71] # Starting Camera position
 camera_rot = [0.0, 0.0] # for rotation
+
+# Car Position
+car_pos = [44, 1.1, -37] # Starting Position for Car
 
 def opengl():
     glClearColor(0.5, 0.8, 1, 1)  # Set sky color
     glEnable(GL_DEPTH_TEST)
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
-    gluPerspective(45, 800 / 600, 0.1, 100.0)
+    gluPerspective(45, 800 / 600, 0.1, 300.0)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
     update_camera()
@@ -54,13 +58,21 @@ def handle_camera_movement():
     if keys[K_q]: camera_pos[1] += camera_speed
     if keys[K_e]: camera_pos[1] -= camera_speed
 
+    # Car Movement ( C to go forward (z axis), V to go backwards (x axis) )
+    car_speed = 0.2
+    if keys[K_c]: car_pos[0] -= car_speed  # Move car forward along z-axis
+    if keys[K_v]: car_pos[0] += car_speed  # Move car back along z-axis
+
+    # TESTING
+    print(f"Camera Position: x={camera_pos[0]}, y={camera_pos[1]}, z={camera_pos[2]}")
+    # print(f"Car Position: x={car_pos[0]}, y={car_pos[1]}, z={car_pos[2]}")
+
 def main():
     # Initialize Game
     pygame.init()
     # Set Display window size
     display = (800, 800)
     pygame.display.set_mode(display, DOUBLEBUF | OPENGL | RESIZABLE)
-
     opengl() # Set up OpenGl
 
     # Load Textures
@@ -85,13 +97,14 @@ def main():
         draw_water(texture2)
         draw_sand(texture3)
         draw_street()
-        draw_tree(0,0,0)
+        draw_perpendicular_street()
+        draw_tree(5,5,5)
         draw_tree(10,0,10)
         draw_tree(-5,0,-5)
         draw_house(-25, 0, 0, (0.88, 0.77, 0.91))
-        draw_house(-25, 0, 0, (0.75, 0.91, 0.91))
-        draw_car(80,1.1,20)
-        draw_palmtree(10,0,-10)
+        draw_house(-5, 0, 0, (0.75, 0.91, 0.91))
+        draw_car(car_pos[0], car_pos[1], car_pos[2])
+        draw_palmtree(10, 0, -10)
         pygame.display.flip()
         pygame.time.wait(10)
 

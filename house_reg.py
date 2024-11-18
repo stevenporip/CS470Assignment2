@@ -5,6 +5,7 @@ from OpenGL.GLU import *
 
 
 def draw_house(x, y, z, color):
+    glPushMatrix()
     glTranslatef(x, y, z)
     front(color)
     back(color)
@@ -18,7 +19,7 @@ def draw_house(x, y, z, color):
     back_door()
     window_left()
     window_right()
-
+    glPopMatrix()
 def back(color):
 
     glColor(color)

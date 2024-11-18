@@ -5,8 +5,9 @@ from OpenGL.GLU import *
 
 
 def draw_car(x, y, z):
+    glPushMatrix()
     glTranslatef(x, y, z)
-    glRotatef(90, 0, 1, 0)
+    glRotatef(180, 0, 1, 0)
     car_driver_side()
     car_pass_side()
     window1()
@@ -19,6 +20,7 @@ def draw_car(x, y, z):
     tire(0,-6.6,-0.2) #driver side tire
     tire(0,-6.6,4.5) #passanger side tire
     tire(0,-2.4,4.5) #passanger side tire
+    glPopMatrix()
 
 def car_driver_side():
 

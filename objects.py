@@ -34,9 +34,10 @@ def draw_tree(x, y, z):
     glPopMatrix()
 
 def draw_street():
+    # Draw the street (gray road)
     glPushMatrix()
     glTranslatef(0, .2, -40) 
-    glScalef(50, 0.2, 4)  
+    glScalef(100, 0.2, 4)  
     glColor3f(0.3, 0.3, 0.3)  # Gray
 
     glBegin(GL_QUADS)
@@ -48,6 +49,60 @@ def draw_street():
 
     glPopMatrix()
 
+    # Draw the yellow lines in the middle of the street
+    line_spacing = 5  # space between each line
+    line_width = 0.5  # Width of each line z axis
+    line_length = 1.7  # Length of each line x axis
+
+    glPushMatrix()
+    glTranslatef(0, .3, -40)
+    glColor3f(1.0, 1.0, 0.2)  # Yellow color
+
+    # loop to draw lines on street
+    for i in range(-100, 100, line_spacing):
+        glBegin(GL_QUADS)
+        glVertex3f(i - line_length / 2, 0, -line_width / 2)
+        glVertex3f(i + line_length / 2, 0, -line_width / 2) 
+        glVertex3f(i + line_length / 2, 0, line_width / 2) 
+        glVertex3f(i - line_length / 2, 0, line_width / 2)
+        glEnd()
+
+    glPopMatrix()
+def draw_perpendicular_street():
+    glPushMatrix()
+    glTranslatef(0, .2, -108) # position of the road
+    glScalef(4, 0.2, 65) 
+    glColor3f(0.3, 0.3, 0.3)  # Gray color
+
+    glBegin(GL_QUADS)
+    glVertex3f(-1, 0, -1)
+    glVertex3f(1, 0, -1)
+    glVertex3f(1, 0, 1)
+    glVertex3f(-1, 0, 1)
+    glEnd()
+
+    glPopMatrix()
+
+
+    # Draw the yellow lines in the middle of the street
+    line_spacing = 5 # space between each line
+    line_width = 0.5  # Width of each line z axis
+    line_length = 1.7  # Length of each line x axis
+
+    glPushMatrix()
+    glTranslatef(0, .3, -108) # positioning of yellow lines
+    glColor3f(1.0, 1.0, 0.2)  # Yellow color
+
+    # loop to draw lines on the street
+    for i in range(-65, 65, line_spacing):
+        glBegin(GL_QUADS)
+        glVertex3f(-line_width / 2, 0, i - line_length / 2)
+        glVertex3f(line_width / 2, 0, i - line_length / 2)
+        glVertex3f(line_width / 2, 0, i + line_length / 2)
+        glVertex3f(-line_width / 2, 0, i + line_length / 2)
+        glEnd()
+
+    glPopMatrix()
 def draw_palmtree(x, y, z):
     glPushMatrix()
     glTranslatef(x, y, z) # Positions to place tree

@@ -6,6 +6,7 @@ from OpenGL.GLU import *
 from background import *
 from objects import *
 from house_reg import *
+from car import *
 
 
 # Define camera positions and angles
@@ -89,6 +90,8 @@ def main():
         draw_tree(-5,0,-5)
         draw_house(-25, 0, 0, (0.88, 0.77, 0.91))
         draw_house(-25, 0, 0, (0.75, 0.91, 0.91))
+        draw_car(80,1.1,20)
+        draw_palmtree(10,0,-10)
         pygame.display.flip()
         pygame.time.wait(10)
 

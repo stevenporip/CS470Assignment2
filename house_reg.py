@@ -17,27 +17,83 @@ def draw_house(x, y, z, color):
     roof_leftside()
     front_door()
     back_door()
-    window_left()
-    window_right()
+    
     glPopMatrix()
+    
 def back(color):
 
     glColor(color)
     glBegin(GL_POLYGON)
-    glVertex3f(1, 10, 0)
     glVertex3f(1, 0, 0)
+    glVertex3f(6, 0, 0)
+    glVertex3f(6, 10, 0)
+    glVertex3f(1, 10, 0)
+    glEnd()
+
+    glColor(color)
+    glBegin(GL_POLYGON)
+    glVertex3f(9, 0, 0)
     glVertex3f(15, 0, 0)
     glVertex3f(15, 10, 0)
+    glVertex3f(9, 10, 0)
+    glEnd()
+
+    glColor(color)
+    glBegin(GL_POLYGON)
+    glVertex3f(6, 4.5, 0)
+    glVertex3f(9, 4.5, 0)
+    glVertex3f(9, 10, 0)
+    glVertex3f(6, 10, 0)
     glEnd()
 
 def front(color):
 
     glColor(color)
     glBegin(GL_POLYGON)
+    glVertex3f(2, 0, 10)
+    glVertex3f(2, 10, 10)
     glVertex3f(1, 10, 10)
     glVertex3f(1, 0, 10)
+    glEnd()
+
+    glColor(color)
+    glBegin(GL_POLYGON)
+    glVertex3f(2, 10, 10)
+    glVertex3f(2, 9, 10)
+    glVertex3f(14, 9, 10)
+    glVertex3f(14, 10, 10)
+    glEnd()
+
+    glColor(color)
+    glBegin(GL_POLYGON)
+    glVertex3f(14, 0, 10)
     glVertex3f(15, 0, 10)
     glVertex3f(15, 10, 10)
+    glVertex3f(14, 10, 10)
+    glEnd()
+
+    glColor(color)
+    glBegin(GL_POLYGON)
+    glVertex3f(6, 4.5, 10)
+    glVertex3f(9, 4.5, 10)
+    glVertex3f(9, 9, 10)
+    glVertex3f(6, 9, 10)
+    glEnd()
+
+    glColor(color)
+    glBegin(GL_POLYGON)
+    glVertex3f(2, 0, 10)
+    glVertex3f(6, 0, 10)
+    glVertex3f(6, 5, 10)
+    glVertex3f(2, 5, 10)
+    glEnd()
+    
+    glColor(color)
+    glBegin(GL_POLYGON)
+    glVertex3f(9, 0, 10)
+    glVertex3f(14, 0, 10)
+    glVertex3f(14, 5, 10)
+    glVertex3f(9, 5, 10)
     glEnd()
 
 def side_right(color):
@@ -96,35 +152,19 @@ def roof_leftside():
 def front_door():
     glColor3f(0, 0, 0)
     glBegin(GL_POLYGON)
-    glVertex3f(5, 0.0, 10.1)
-    glVertex3f(8, 0.0, 10.1)
-    glVertex3f(8, 5, 10.1)
-    glVertex3f(5, 5, 10.1)
+    glVertex3f(6, 0.0, 10)
+    glVertex3f(9, 0.0, 10)
+    glVertex3f(9, 4.5, 10)
+    glVertex3f(6, 4.5, 10)
     glEnd()
 
-def window_left():
-    glColor4f(0.6, 0.8, 1.0, 0.5)
-    glBegin(GL_POLYGON)
-    glVertex3f(2, 6, 10.1)
-    glVertex3f(5, 6, 10.1)
-    glVertex3f(5, 9, 10.1)
-    glVertex3f(2, 9, 10.1)
-    glEnd()
-  
-def window_right():
-    glColor4f(0.6, 0.8, 1.0, 0.5)
-    glBegin(GL_POLYGON)
-    glVertex3f(9, 6, 10.1)
-    glVertex3f(12, 6, 10.1)
-    glVertex3f(12, 9, 10.1)
-    glVertex3f(9, 9, 10.1)
-    glEnd()
+
     
 def back_door():
     glColor3f(0, 0, 0)
     glBegin(GL_POLYGON)
-    glVertex3f(5, 0.0, -0.1)
-    glVertex3f(8, 0.0, -0.1)
-    glVertex3f(8, 5, -0.1)
-    glVertex3f(5, 5, -0.1)
+    glVertex3f(6, 0.0, 0)
+    glVertex3f(9, 0.0, 0)
+    glVertex3f(9, 4.5, 0)
+    glVertex3f(6, 4.5, 0)
     glEnd()

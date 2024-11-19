@@ -7,6 +7,7 @@ from background import *
 from objects import *
 from house_reg import *
 from car import *
+from buildings import *
 
 
 
@@ -98,11 +99,12 @@ def main():
         draw_sand(texture3)
         draw_street()
         draw_perpendicular_street()
-        draw_tree(5,5,5)
-        draw_tree(10,0,10)
-        draw_tree(-5,0,-5)
+        draw_tree(15,0,15)
+        draw_tree(10,0,20)
+        draw_tree(20,0,20)
         draw_house(-25, 0, 0, (0.88, 0.77, 0.91))
-        draw_house(-5, 0, 0, (0.75, 0.91, 0.91))
+        draw_house(0, 0, 0, (0.75, 0.91, 0.91))
+        draw_building(50, 0, -10, (1, 0, 0))
         draw_car(car_pos[0], car_pos[1], car_pos[2])
         draw_palmtree(10, 0, -10)
         pygame.display.flip()

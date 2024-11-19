@@ -2,7 +2,11 @@ from OpenGL.GL import *
 import pygame
 from pygame.locals import *
 from OpenGL.GLU import *
-
+# Variables to track the opening / closing of the door
+front_door_angle = 0
+door_opening_speed = 1
+front_door_open = False
+front_door_close = True
 
 def draw_house(x, y, z, color):
     glPushMatrix()
@@ -150,6 +154,10 @@ def roof_leftside():
 
 
 def front_door():
+    glPushMatrix()
+    glTranslatef(6, 0 , 10)
+    glRotatef(front_door_angle, 0, 1, 0)
+    glTranslatef(-6,0,-10)
     glColor3f(0, 0, 0)
     glBegin(GL_POLYGON)
     glVertex3f(6, 0.0, 10)
@@ -157,9 +165,8 @@ def front_door():
     glVertex3f(9, 4.5, 10)
     glVertex3f(6, 4.5, 10)
     glEnd()
+    glPopMatrix()
 
-
-    
 def back_door():
     glColor3f(0, 0, 0)
     glBegin(GL_POLYGON)
@@ -168,3 +175,21 @@ def back_door():
     glVertex3f(9, 4.5, 0)
     glVertex3f(6, 4.5, 0)
     glEnd()
+
+# Function to handle opening of doors
+def handle_door_opening():
+    global front_door_angle, front_door_open, front_door_close
+
+    # O to open door, P to close door
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_o]:  # Open door
+        front_door_open = True
+        front_door_close = False
+    elif keys[pygame.K_p]:  # Close door
+        front_door_open = False
+        front_door_close = True
+
+    if front_door_open and front_door_angle < 90:
+        front_door_angle += door_opening_speed
+    elif front_door_close and front_door_angle > 0:
+        front_door_angle -= door_opening_speed

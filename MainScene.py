@@ -16,7 +16,7 @@ camera_pos = [29, -19, -71] # Starting Camera position
 camera_rot = [0.0, 0.0] # for rotation
 
 # Car Position
-car_pos = [44, 1.1, -37] # Starting Position for Car
+car_pos = [44, 1.1, -28] # Starting Position for Car
 
 def opengl():
     glClearColor(0.5, 0.8, 1, 1)  # Set sky color
@@ -91,6 +91,9 @@ def main():
         # Update Camera
         handle_camera_movement()
         update_camera()
+
+        # Handle Opening of Door input
+        handle_door_opening()
 
         # Draw Scenes / Objects
         glColor3f(1.0, 1.0, 1.0)

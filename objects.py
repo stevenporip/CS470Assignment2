@@ -153,6 +153,88 @@ def draw_leaves():
     draw_single_leaf()
     glPopMatrix()
 
-    
-    
+def draw_traffic_light(x, y, z, current_state):
+    glPushMatrix()
+    glTranslatef(x, y, z)
+    glRotatef(90, 0, 1, 0)
 
+    # Draw pole
+    glColor3f(0.85, 0.85, 0.85)  # gray
+    glPushMatrix()
+    glRotatef(-90, 1, 0, 0)
+    pole = gluNewQuadric()
+    gluCylinder(pole, 0.15, 0.15, 6, 20, 20)
+    gluDeleteQuadric(pole)
+    glPopMatrix()
+
+    # Draw arm
+    glPushMatrix()
+    glTranslatef(0, 6, 0)  # Move to the top of the pole
+    glRotatef(90, 0, 1, 0)
+    arm = gluNewQuadric()
+    gluCylinder(arm, 0.15, 0.15, 5, 20, 20)
+    gluDeleteQuadric(arm)
+    glPopMatrix()
+
+    # Draw the traffic light 
+    glPushMatrix()
+    glTranslatef(5, 4.9, 0)  
+    glColor3f(.5, .5, .5)  # Dark gray 
+
+    # Dimensions
+    width = 0.5   
+    height = 1.0  
+    depth = 0.2   
+
+    glBegin(GL_QUADS)
+    # Front
+    glVertex3f(-width, -height, depth)
+    glVertex3f(width, -height, depth)
+    glVertex3f(width, height, depth)
+    glVertex3f(-width, height, depth)
+    # Back
+    glVertex3f(-width, -height, -depth)
+    glVertex3f(-width, height, -depth)
+    glVertex3f(width, height, -depth)
+    glVertex3f(width, -height, -depth)
+    # Left
+    glVertex3f(-width, -height, -depth)
+    glVertex3f(-width, -height, depth)
+    glVertex3f(-width, height, depth)
+    glVertex3f(-width, height, -depth)
+    # Right
+    glVertex3f(width, -height, -depth)
+    glVertex3f(width, height, -depth)
+    glVertex3f(width, height, depth)
+    glVertex3f(width, -height, depth)
+    # Top
+    glVertex3f(-width, height, -depth)
+    glVertex3f(-width, height, depth)
+    glVertex3f(width, height, depth)
+    glVertex3f(width, height, -depth)
+    # Bottom
+    glVertex3f(-width, -height, -depth)
+    glVertex3f(width, -height, -depth)
+    glVertex3f(width, -height, depth)
+    glVertex3f(-width, -height, depth)
+    glEnd()
+
+    # Draw the lights
+    quadric = gluNewQuadric()
+    light_positions = [0.5, 0.0, -0.5] 
+    light_colors = [
+        (1.0, 0.0, 0.0) if current_state == 0 else (0.3, 0.0, 0.0),  # Red
+        (1.0, 1.0, 0.0) if current_state == 2 else (0.3, 0.3, 0.0),  # Yellow
+        (0.0, 1.0, 0.0) if current_state == 1 else (0.0, 0.3, 0.0),  # Green
+    ]
+
+    for pos, color in zip(light_positions, light_colors):
+        glPushMatrix()
+        glTranslatef(0, pos, depth + 0.01) 
+        glColor3f(*color)
+        gluDisk(quadric, 0, 0.15, 20, 1)
+        glPopMatrix()
+
+    gluDeleteQuadric(quadric)
+    glPopMatrix() 
+    glPopMatrix()  

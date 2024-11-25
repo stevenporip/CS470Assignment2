@@ -8,12 +8,16 @@ door_opening_speed = 1
 front_door_open = False
 front_door_close = True
 
-def draw_house(x, y, z, color):
+def draw_house(x, y, z, color, garage):
     glPushMatrix()
     glTranslatef(x, y, z)
     front(color)
     back(color)
-    side_right(color)
+    if garage is True:
+        side_right(color)
+    elif garage is False:
+        garage_side(color)
+        garage_door()
     side_left(color)
     roof_front()
     roof_back()
@@ -109,6 +113,32 @@ def side_right(color):
     glVertex3f(1, 10, 10)
     glEnd()
 
+def garage_side(color):
+    glColor(color)
+    glBegin(GL_POLYGON)
+    glVertex3f(1, 0, 0)
+    glVertex3f(1, 0, 2)
+    glVertex3f(1, 10, 2)
+    glVertex3f(1, 10, 0)
+    glEnd()
+
+    glColor(color)
+    glBegin(GL_POLYGON)
+    glVertex3f(1, 4, 2)
+    glVertex3f(1, 4, 8)
+    glVertex3f(1, 10, 8)
+    glVertex3f(1, 10, 2)
+    glEnd()
+
+    glColor(color)
+    glBegin(GL_POLYGON)
+    glVertex3f(1, 0, 8)
+    glVertex3f(1, 0, 10)
+    glVertex3f(1, 10, 10)
+    glVertex3f(1, 10, 8)
+    glEnd()
+    
+
 def side_left(color):
     glColor(color)
     glBegin(GL_POLYGON)
@@ -174,6 +204,15 @@ def back_door():
     glVertex3f(9, 0.0, 0)
     glVertex3f(9, 4.5, 0)
     glVertex3f(6, 4.5, 0)
+    glEnd()
+
+def garage_door():
+    glColor3f(0, 1, 0)
+    glBegin(GL_POLYGON)
+    glVertex3f(1, 0, 2)
+    glVertex3f(1, 0, 8)
+    glVertex3f(1, 4, 8)
+    glVertex3f(1, 4, 2)
     glEnd()
 
 # Function to handle opening of doors

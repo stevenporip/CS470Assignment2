@@ -8,7 +8,7 @@ from objects import *
 from house_reg import *
 from car import *
 from buildings import *
-
+from water_tower import *
 
 
 # Define camera positions and angles
@@ -152,11 +152,12 @@ def main():
         draw_tree(15,0,15)
         draw_tree(10,0,20)
         draw_tree(20,0,20)
-        draw_house(-25, 0, 0, (0.88, 0.77, 0.91))
-        draw_house(0, 0, 0, (0.75, 0.91, 0.91))
+        draw_house(-25, 0, 0, (0.88, 0.77, 0.91), False)
+        draw_house(0, 0, 0, (0.75, 0.91, 0.91), True)
         draw_building(50, 0, -10, (1, 0, 0))
         draw_car(car_pos[0], car_pos[1], car_pos[2])
         draw_palmtree(10, 0, -10)
+        draw_tower(20, 7, 20)
         pygame.display.flip()
         pygame.time.wait(10)
 

@@ -9,7 +9,7 @@ from house_reg import *
 from car import *
 from buildings import *
 from water_tower import *
-
+from boardwalk import *
 
 # Define camera positions and angles
 camera_pos = [29, -19, -71] # Starting Camera position
@@ -152,12 +152,13 @@ def main():
         draw_tree(15,0,15)
         draw_tree(10,0,20)
         draw_tree(20,0,20)
-        draw_house(-25, 0, 0, (0.88, 0.77, 0.91), False)
-        draw_house(0, 0, 0, (0.75, 0.91, 0.91), True)
-        draw_building(50, 0, -10, (1, 0, 0))
+        draw_house(-25, 0, 0, (0.251, 0.922, 0.663), False)
+        draw_house(0, 0, 0, (0.949, 0.443, 0.627), True)
+        draw_building(45, 0, -15, (1, 0, 0))
         draw_car(car_pos[0], car_pos[1], car_pos[2])
         draw_palmtree(10, 0, -10)
         draw_tower(20, 7, 20)
+        draw_boardwalk(-95, 2, 97)
         pygame.display.flip()
         pygame.time.wait(10)
 

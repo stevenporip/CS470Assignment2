@@ -13,6 +13,7 @@ def draw_house(x, y, z, color, garage):
     glTranslatef(x, y, z)
     front(color)
     back(color)
+    floor()
     if garage is True:
         side_right(color)
     elif garage is False:
@@ -26,6 +27,7 @@ def draw_house(x, y, z, color, garage):
     front_door()
     back_door()
     
+
     glPopMatrix()
     
 def back(color):
@@ -182,6 +184,16 @@ def roof_leftside():
     glVertex3f(1, 15, 5)
     glEnd()
 
+def floor():
+    glColor(.443, .541, .949)
+    glBegin(GL_POLYGON)
+    glVertex3f(1, 0.25, 10)
+    glVertex3f(1, 0.25, 0)
+    glVertex3f(15, 0.25, 0)
+    glVertex3f(15, 0.25, 10)
+    
+    
+    glEnd()
 
 def front_door():
     glPushMatrix()
@@ -207,7 +219,7 @@ def back_door():
     glEnd()
 
 def garage_door():
-    glColor3f(0, 1, 0)
+    glColor3f(0.569, 0.549, 0.518)
     glBegin(GL_POLYGON)
     glVertex3f(1, 0, 2)
     glVertex3f(1, 0, 8)

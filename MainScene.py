@@ -10,6 +10,8 @@ from car import *
 from buildings import *
 from water_tower import *
 from boardwalk import *
+from lifeguard_chair import *
+from boat import *
 
 # Define camera positions and angles
 camera_pos = [29, -19, -71] # Starting Camera position
@@ -17,6 +19,9 @@ camera_rot = [0.0, 0.0] # for rotation
 
 # Car Position
 car_pos = [44, 1.1, -28] # Starting Position for Car
+
+# Boat Position
+boat_pos = [10,0,120] #Start position for boat
 
 # Define Lighting
 is_daytime = True  # Start with daytime
@@ -76,6 +81,11 @@ def handle_camera_movement():
     car_speed = 0.2
     if keys[K_c]: car_pos[0] -= car_speed  # Move car forward along z-axis
     if keys[K_v]: car_pos[0] += car_speed  # Move car back along z-axis
+
+    # Boat Movement ( F to go forward, G to go backwards)
+    boat_speed = 0.1
+    if keys[K_f]: boat_pos[0] -= boat_speed  # Move boat forward
+    if keys[K_g]: boat_pos[0] += boat_speed  # Move boat backwards
 
     # TESTING
     print(f"Camera Position: x={camera_pos[0]}, y={camera_pos[1]}, z={camera_pos[2]}")
@@ -159,6 +169,8 @@ def main():
         draw_palmtree(10, 0, -10)
         draw_tower(20, 7, 20)
         draw_boardwalk(-95, 2, 97)
+        draw_boat(boat_pos[0], boat_pos[1], boat_pos[2])
+        draw_lifeguardchair(-25,0,60)
         pygame.display.flip()
         pygame.time.wait(10)
 

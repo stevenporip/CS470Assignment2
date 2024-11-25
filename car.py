@@ -16,6 +16,8 @@ def draw_car(x, y, z):
     window4()
     car_back()
     car_front()
+    car_windshield()
+    car_rearview_window()
     tire(0,-2.4,-0.2) #driver side tire
     tire(0,-6.6,-0.2) #driver side tire
     tire(0,-6.6,4.5) #passanger side tire
@@ -112,6 +114,24 @@ def car_front():
     glVertex3f(6, 4.5, 5)
     glVertex3f(7.5, 2.5, 5)
     glVertex3f(9.3, 2.5, 5)
+    glEnd()
+
+def car_windshield():
+    glColor(1, 1, 1)
+    glBegin(GL_POLYGON)
+    glVertex3f(7.51, 2.6, 0.2)
+    glVertex3f(6.1, 4.4, 0.2)
+    glVertex3f(6.1, 4.4, 4.8)
+    glVertex3f(7.51, 2.6, 4.8)
+    glEnd()
+
+def car_rearview_window():
+    glColor(1, 1, 1)
+    glBegin(GL_POLYGON)
+    glVertex3f(0.85, 2.6, 0.2)
+    glVertex3f(1.45, 4.4, 0.2)
+    glVertex3f(1.45, 4.4, 4.8)
+    glVertex3f(0.85, 2.6, 4.8)
     glEnd()
 
 def tire(x,y,z):

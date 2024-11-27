@@ -243,7 +243,7 @@ def handle_door_opening():
     elif keys[pygame.K_p]:  # Close door
         front_door_open = False
         front_door_close = True
-    elif keys[pygame.K_g]:
+    elif keys[pygame.K_u]:
         garage_up = True
         garage_down = False
     elif keys[pygame.K_d]:

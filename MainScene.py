@@ -12,6 +12,7 @@ from water_tower import *
 from boardwalk import *
 from lifeguard_chair import *
 from boat import *
+from furniture import *
 
 # Define camera positions and angles
 camera_pos = [29, -19, -71] # Starting Camera position
@@ -163,6 +164,7 @@ def main():
         draw_tree(10,0,20)
         draw_tree(20,0,20)
         draw_house(-25, 0, 0, (0.251, 0.922, 0.663), False)
+        draw_couch(-20, 2 , 5)
         draw_house(0, 0, 0, (0.949, 0.443, 0.627), True)
         draw_building(45, 0, -15, (1, 0, 0))
         draw_car(car_pos[0], car_pos[1], car_pos[2])

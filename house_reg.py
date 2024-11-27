@@ -7,6 +7,9 @@ front_door_angle = 0
 door_opening_speed = 1
 front_door_open = False
 front_door_close = True
+garage_down = True
+garage_up = False
+garage_move = 0
 
 def draw_house(x, y, z, color, garage):
     glPushMatrix()
@@ -191,8 +194,6 @@ def floor():
     glVertex3f(1, 0.25, 0)
     glVertex3f(15, 0.25, 0)
     glVertex3f(15, 0.25, 10)
-    
-    
     glEnd()
 
 def front_door():
@@ -219,6 +220,8 @@ def back_door():
     glEnd()
 
 def garage_door():
+    glPushMatrix()
+    glTranslatef(0, garage_move, 0)
     glColor3f(0.569, 0.549, 0.518)
     glBegin(GL_POLYGON)
     glVertex3f(1, 0, 2)
@@ -226,10 +229,11 @@ def garage_door():
     glVertex3f(1, 4, 8)
     glVertex3f(1, 4, 2)
     glEnd()
+    glPopMatrix()
 
 # Function to handle opening of doors
 def handle_door_opening():
-    global front_door_angle, front_door_open, front_door_close
+    global front_door_angle, front_door_open, front_door_close, garage_up, garage_down, garage_move
 
     # O to open door, P to close door
     keys = pygame.key.get_pressed()
@@ -239,8 +243,18 @@ def handle_door_opening():
     elif keys[pygame.K_p]:  # Close door
         front_door_open = False
         front_door_close = True
+    elif keys[pygame.K_g]:
+        garage_up = True
+        garage_down = False
+    elif keys[pygame.K_d]:
+        garage_up = False
+        garage_down = True
 
     if front_door_open and front_door_angle < 90:
         front_door_angle += door_opening_speed
     elif front_door_close and front_door_angle > 0:
         front_door_angle -= door_opening_speed
+    elif garage_up and garage_move < 5:
+        garage_move += door_opening_speed
+    elif garage_down and garage_move > 0:
+        garage_move -= door_opening_speed

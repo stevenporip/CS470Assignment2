@@ -13,16 +13,17 @@ from boardwalk import *
 from lifeguard_chair import *
 from boat import *
 from furniture import *
+from mountain import *
 
 # Define camera positions and angles
-camera_pos = [29, -19, -71] # Starting Camera position
-camera_rot = [0.0, 0.0] # for rotation
+camera_pos = [-42, -5, 1] # Starting Camera position
+camera_rot = [0, -35] # for rotation
 
 # Car Position
-car_pos = [44, 1.1, -28] # Starting Position for Car
+car_pos = [-10, 1.1, 28] # Starting Position for Car
 
 # Boat Position
-boat_pos = [10,0,120] #Start position for boat
+boat_pos = [10,0,145] #Start position for boat
 
 # Define Lighting
 is_daytime = True  # Start with daytime
@@ -59,8 +60,8 @@ def update_camera():
 
 def handle_camera_movement():
     keys = pygame.key.get_pressed()
-    camera_speed = 0.5
-    rotational_speed = 0.5
+    camera_speed = 1.0
+    rotational_speed = 1.0
 
     # Camera Translating ( WASD Format ) 
     if keys[K_w]: camera_pos[2] += camera_speed # Move Camera Forward
@@ -160,19 +161,53 @@ def main():
         draw_street()
         draw_perpendicular_street()
         draw_traffic_light(3, 0, -35, 2)
-        draw_tree(15,0,15)
-        draw_tree(10,0,20)
-        draw_tree(20,0,20)
-        draw_house(-25, 0, 0, (0.251, 0.922, 0.663), False)
-        draw_couch(-20, 2 , 5)
-        draw_house(0, 0, 0, (0.949, 0.443, 0.627), True)
-        draw_building(45, 0, -15, (1, 0, 0))
+        draw_tree(-85,0,-20)
+        draw_tree(-70,0,-23)
+        draw_tree(-55,0,-17)
+        draw_tree(-23,0,-48)
+        draw_tree(-30,0,-48)
+        draw_tree(-60,0,-48)
+        draw_tree(-70,0,-59)
+        draw_tree(-74,0,-48)
+        draw_tree(-78,0,-59)
+        draw_tree(-82,0,-48)
+        draw_tree(-88,0,-52)
+        draw_tree(-88,0,-64)
+        draw_tree(-80,0,-70)
+        draw_house(-25, 0, -65, (0.251, 0.922, 0.663), True)
+        draw_house(-45, 0, -65, (0.444, 0.222, 0.563), False)
+        draw_couch(-20, 2 , -60)
+        draw_house(10, 0, -65, (0.949, 0.443, 0.627), True)
+        draw_building(45, 0, -65, (1, 0, 0))
         draw_car(car_pos[0], car_pos[1], car_pos[2])
-        draw_palmtree(10, 0, -10)
-        draw_tower(20, 7, 20)
-        draw_boardwalk(-95, 2, 97)
+        draw_palmtree(-115,0,105)
+        draw_palmtree(-85,0,105)
+        draw_palmtree(-50, 0, 105)
+        draw_palmtree(-25,0,105)
+        draw_palmtree(0,0,105)
+        draw_palmtree(25,0,105)
+        draw_tower(20, 7, 65)
+        draw_boardwalk(-95, 2, 155)
         draw_boat(boat_pos[0], boat_pos[1], boat_pos[2])
-        draw_lifeguardchair(-25,0,60)
+        draw_lifeguardchair(15,0,110)
+        draw_lifeguardchair(-10,0,110)
+        draw_lifeguardchair(-36,0,110)
+        draw_lifeguardchair(-66,0,110)
+        draw_lifeguardchair(-106,0,110)
+        draw_mountain(100, 90, [35, 0, -200])
+        draw_mountain(150, 90, [-65, 0, -200])
+        draw_mountain(70,120, [-105,0,-150])
+        draw_mountain(70,120, [-175,0,-65])
+        draw_mountain(50,40, [-135,0,-110])
+        draw_mountain(40,20,[-95,0,-110])
+        draw_mountain(75,30,[-70,0,-110])
+        draw_mountain(60,60,[-30,0,-110])
+        draw_mountain(75,40, [45,0,-110])
+        draw_mountain(60,50,[75,0,-75])
+        draw_mountain(30,25,[50,0,-35])
+        draw_mountain(50,40, [20,0,-110])
+        draw_mountain(50,90, [-15,0,-150])
+        draw_mountain(50,60, [75,0,-150])
         pygame.display.flip()
         pygame.time.wait(10)
 

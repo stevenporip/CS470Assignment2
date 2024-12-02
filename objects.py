@@ -8,7 +8,7 @@ def draw_tree(x, y, z):
     # Push to apply starting transformation
     glPushMatrix()
     glTranslatef(x, y, z) # Positions to place tree
-    glScalef(2.5, 2.5, 2.5)  # Scale the tree
+    glScalef(4, 4, 4)  # Scale the tree
 
     # Draw Tree Trunk
     glPushMatrix()
@@ -32,7 +32,7 @@ def draw_tree(x, y, z):
 
     # Pop when tree is completed
     glPopMatrix()
-
+    
 def draw_street():
     # Draw the street (gray road)
     glPushMatrix()
@@ -106,6 +106,7 @@ def draw_perpendicular_street():
 def draw_palmtree(x, y, z):
     glPushMatrix()
     glTranslatef(x, y, z) # Positions to place tree
+    glScalef(3,3,3)
     glColor3f(0.55, 0.27, 0.07)  # Brown color for trunk
     glRotatef(-90, 1, 0, 0)
     trunk = gluNewQuadric()

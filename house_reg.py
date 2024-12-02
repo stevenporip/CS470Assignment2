@@ -11,7 +11,19 @@ garage_down = True
 garage_up = False
 garage_move = 0
 
+light_diffuse  = [0.9, 0.9, 0.9, 1.0]
+mat_diffuse   = [1, 1, 1, 1.0]
+
 def draw_house(x, y, z, color, garage):
+    glPushMatrix()
+    light_position = [x+6, y+12, z, 1.0]
+    light_diffuse  = [0.8, 0.8, 0.8, 1.0]
+    mat_diffuse   = [0.969, 0.925, 0.8, 1.0]
+
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position)
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse)
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse)
+    glPopMatrix()
     glPushMatrix()
     glTranslatef(x, y, z)
     front(color)

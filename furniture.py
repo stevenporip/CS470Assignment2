@@ -36,3 +36,29 @@ def draw_couch(x, y, z):
                 glVertex3f(*scene.vertices[vertex_i])
         glEnd()
     glPopMatrix()
+
+def draw_table(x, y, z):
+    stand(x, y, z)
+    glPushMatrix()
+    glTranslatef(x, y, z)
+    glColor(.831, .718, 0.494)
+    table()
+    glPopMatrix()
+
+def table():
+    glBegin(GL_POLYGON)
+    glVertex3f(1, 2, 3)
+    glVertex3f(1, 2, 0)
+    glVertex3f(3, 2, 0)
+    glVertex3f(3, 2, 3)
+    glEnd()
+
+def stand(x, y, z):
+    quad = gluNewQuadric()                    
+    gluQuadricNormals(quad, GLU_SMOOTH)  
+    glPushMatrix()  
+    glColor(.831, .718, 0.494)
+    glTranslatef(x+2, y+2, z+1)
+    glRotatef(90, 1.0, 0.0, 0.0)
+    gluCylinder(quad, .25, .25, 2, 10, 10)
+    glPopMatrix()

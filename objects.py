@@ -163,14 +163,15 @@ def draw_traffic_light(x, y, z, current_state):
     glColor3f(0.85, 0.85, 0.85)  # gray
     glPushMatrix()
     glRotatef(-90, 1, 0, 0)
+    
     pole = gluNewQuadric()
-    gluCylinder(pole, 0.15, 0.15, 6, 20, 20)
+    gluCylinder(pole, 0.15, 0.15, 10, 20, 20)
     gluDeleteQuadric(pole)
     glPopMatrix()
 
     # Draw arm
     glPushMatrix()
-    glTranslatef(0, 6, 0)  # Move to the top of the pole
+    glTranslatef(0, 10, 0)  # Move to the top of the pole
     glRotatef(90, 0, 1, 0)
     arm = gluNewQuadric()
     gluCylinder(arm, 0.15, 0.15, 5, 20, 20)
@@ -179,7 +180,7 @@ def draw_traffic_light(x, y, z, current_state):
 
     # Draw the traffic light 
     glPushMatrix()
-    glTranslatef(5, 4.9, 0)  
+    glTranslatef(5, 8.9, 0)  
     glColor3f(.5, .5, .5)  # Dark gray 
 
     # Dimensions
@@ -239,3 +240,25 @@ def draw_traffic_light(x, y, z, current_state):
     gluDeleteQuadric(quadric)
     glPopMatrix() 
     glPopMatrix()  
+
+def draw_streetlight(x, y, z):
+  
+    glPushMatrix()
+    glTranslatef(x, y, z)
+    
+    # Pole
+    glPushMatrix()
+    glColor3f(0.5, 0.5, 0.5) 
+    glRotatef(-90, 1, 0, 0) 
+    gluCylinder(gluNewQuadric(), 0.2, 0.2, 10, 16, 16)  # Base radius, top radius, height
+    glPopMatrix()
+    
+    # Lamp 
+    glPushMatrix()
+    glTranslatef(0, 10, 0)  
+    glColor3f(1.0, 1.0, 0.0)  
+    gluSphere(gluNewQuadric(), 0.5, 16, 16)  
+    glPopMatrix()
+    
+    glPopMatrix()
+

@@ -155,12 +155,19 @@ def main():
 
         # Draw Scenes / Objects
         glColor3f(1.0, 1.0, 1.0)
+        
         draw_ground(texture)
         draw_water(texture2)
         draw_sand(texture3)
+        
         draw_street()
         draw_perpendicular_street()
+        
         draw_traffic_light(3, 0, -35, 2)
+        
+        for i in range(-80, 81, 25):  # Adjust range and spacing as needed
+            draw_streetlight(i, 0, -30)
+        
         draw_tree(-85,0,-20)
         draw_tree(-70,0,-23)
         draw_tree(-55,0,-17)
@@ -174,31 +181,42 @@ def main():
         draw_tree(-88,0,-52)
         draw_tree(-88,0,-64)
         draw_tree(-80,0,-70)
+        
         draw_house(-25, 0, -65, (0.251, 0.922, 0.663), True)
         draw_couch(-17, 1.5 , -62.5)
         draw_table(-19, 0, -60)
+        
         draw_house(-45, 0, -65, (0.444, 0.222, 0.563), False)
         draw_couch(-37, 1.5 , -62.5)
         draw_table(-39, 0, -60)
+        
         draw_house(10, 0, -65, (0.949, 0.443, 0.627), True)
         draw_couch(19, 1.5 , -62.5)
         draw_table(17, 0, -60)
+        
         draw_building(45, 0, -65, (1, 0, 0))
+        
         draw_car(car_pos[0], car_pos[1], car_pos[2])
+        
         draw_palmtree(-115,0,105)
         draw_palmtree(-85,0,105)
         draw_palmtree(-50, 0, 105)
         draw_palmtree(-25,0,105)
         draw_palmtree(0,0,105)
         draw_palmtree(25,0,105)
+        
         draw_tower(20, 7, 65)
+        
         draw_boardwalk(-95, 2, 155)
+        
         draw_boat(boat_pos[0], boat_pos[1], boat_pos[2])
+        
         draw_lifeguardchair(15,0,110)
         draw_lifeguardchair(-10,0,110)
         draw_lifeguardchair(-36,0,110)
         draw_lifeguardchair(-66,0,110)
         draw_lifeguardchair(-106,0,110)
+        
         draw_mountain(100, 90, [35, 0, -200])
         draw_mountain(150, 90, [-65, 0, -200])
         draw_mountain(70,120, [-105,0,-150])
@@ -213,6 +231,7 @@ def main():
         draw_mountain(50,40, [20,0,-110])
         draw_mountain(50,90, [-15,0,-150])
         draw_mountain(50,60, [75,0,-150])
+        
         pygame.display.flip()
         pygame.time.wait(10)
 

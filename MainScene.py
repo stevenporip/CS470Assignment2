@@ -14,6 +14,7 @@ from lifeguard_chair import *
 from boat import *
 from furniture import *
 from mountain import *
+from lifeguard import*
 
 # Define camera positions and angles
 camera_pos = [-42, -5, 1] # Starting Camera position
@@ -211,7 +212,9 @@ def main():
         draw_boardwalk(-95, 2, 155)
         
         draw_boat(boat_pos[0], boat_pos[1], boat_pos[2])
-        
+
+        draw_lifeguard(5, 0, 110, (255, 0, 0), (237, 187, 153))
+
         draw_lifeguardchair(15,0,110)
         draw_lifeguardchair(-10,0,110)
         draw_lifeguardchair(-36,0,110)

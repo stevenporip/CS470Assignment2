@@ -68,6 +68,7 @@ def draw_street():
         glEnd()
 
     glPopMatrix()
+    
 def draw_perpendicular_street():
     glPushMatrix()
     glTranslatef(0, .2, -108) # position of the road
@@ -160,7 +161,7 @@ def draw_traffic_light(x, y, z, current_state):
     glRotatef(90, 0, 1, 0)
 
     # Draw pole
-    glColor3f(0.85, 0.85, 0.85)  # gray
+    glColor3f(0.85, 0.85, 0.85) 
     glPushMatrix()
     glRotatef(-90, 1, 0, 0)
     
@@ -178,50 +179,36 @@ def draw_traffic_light(x, y, z, current_state):
     gluDeleteQuadric(arm)
     glPopMatrix()
 
-    # Draw the traffic light 
+    # Draw the traffic light with three faces
     glPushMatrix()
     glTranslatef(5, 8.9, 0)  
-    glColor3f(.5, .5, .5)  # Dark gray 
+    glColor3f(0.5, 0.5, 0.5)  # Dark gray 
 
     # Dimensions
     width = 0.5   
     height = 1.0  
     depth = 0.2   
 
+    # Draw cube
     glBegin(GL_QUADS)
     # Front
     glVertex3f(-width, -height, depth)
     glVertex3f(width, -height, depth)
     glVertex3f(width, height, depth)
     glVertex3f(-width, height, depth)
-    # Back
-    glVertex3f(-width, -height, -depth)
-    glVertex3f(-width, height, -depth)
-    glVertex3f(width, height, -depth)
-    glVertex3f(width, -height, -depth)
     # Left
-    glVertex3f(-width, -height, -depth)
-    glVertex3f(-width, -height, depth)
-    glVertex3f(-width, height, depth)
-    glVertex3f(-width, height, -depth)
+    glVertex3f(-depth, -height, -width)
+    glVertex3f(-depth, height, -width)
+    glVertex3f(-depth, height, width)
+    glVertex3f(-depth, -height, width)
     # Right
-    glVertex3f(width, -height, -depth)
-    glVertex3f(width, height, -depth)
-    glVertex3f(width, height, depth)
-    glVertex3f(width, -height, depth)
-    # Top
-    glVertex3f(-width, height, -depth)
-    glVertex3f(-width, height, depth)
-    glVertex3f(width, height, depth)
-    glVertex3f(width, height, -depth)
-    # Bottom
-    glVertex3f(-width, -height, -depth)
-    glVertex3f(width, -height, -depth)
-    glVertex3f(width, -height, depth)
-    glVertex3f(-width, -height, depth)
+    glVertex3f(depth, -height, -width)
+    glVertex3f(depth, height, -width)
+    glVertex3f(depth, height, width)
+    glVertex3f(depth, -height, width)
     glEnd()
 
-    # Draw the lights
+    # Draw lights on three faces
     quadric = gluNewQuadric()
     light_positions = [0.5, 0.0, -0.5] 
     light_colors = [
@@ -230,35 +217,64 @@ def draw_traffic_light(x, y, z, current_state):
         (0.0, 1.0, 0.0) if current_state == 1 else (0.0, 0.3, 0.0),  # Green
     ]
 
-    for pos, color in zip(light_positions, light_colors):
-        glPushMatrix()
-        glTranslatef(0, pos, depth + 0.01) 
-        glColor3f(*color)
-        gluDisk(quadric, 0, 0.15, 20, 1)
-        glPopMatrix()
+    # For each face, draw lights
+    faces = [(0, 0, depth + 0.01), (-depth - 0.01, 0, 0), (depth + 0.01, 0, 0)]
+    for face in faces:
+        for pos, color in zip(light_positions, light_colors):
+            glPushMatrix()
+            glTranslatef(*face)
+            glTranslatef(0, pos, 0)
+            glColor3f(*color)
+            gluDisk(quadric, 0, 0.15, 20, 1)
+            glPopMatrix()
 
     gluDeleteQuadric(quadric)
     glPopMatrix() 
-    glPopMatrix()  
+    glPopMatrix()
 
-def draw_streetlight(x, y, z):
-  
+def draw_streetlight(x, y, z, light_id, is_daytime):
     glPushMatrix()
     glTranslatef(x, y, z)
     
-    # Pole
+    # Draw Pole
     glPushMatrix()
     glColor3f(0.5, 0.5, 0.5) 
-    glRotatef(-90, 1, 0, 0) 
-    gluCylinder(gluNewQuadric(), 0.2, 0.2, 10, 16, 16)  # Base radius, top radius, height
+    glRotatef(-90, 1, 0, 0)
+    pole = gluNewQuadric()
+    gluCylinder(pole, 0.2, 0.2, 10, 16, 16)  # Base, top, height
     glPopMatrix()
     
-    # Lamp 
+    # Draw Arm
     glPushMatrix()
-    glTranslatef(0, 10, 0)  
-    glColor3f(1.0, 1.0, 0.0)  
-    gluSphere(gluNewQuadric(), 0.5, 16, 16)  
+    glTranslatef(0, 10, 0)  # Move to the top of the pole
+    glColor3f(0.5, 0.5, 0.5) 
+    glRotatef(180, 0, 1, 0)  
+    arm = gluNewQuadric()
+    gluCylinder(arm, 0.1, 0.1, 5, 16, 16)  # arm
     glPopMatrix()
     
+    # Draw Bulb
+    glPushMatrix()
+    glTranslatef(0, 10, -5)  # Move to the end of the arm
+    glColor3f(1.0, 1.0, 0.0)  # Yellow bulb
+    
+    glMaterialfv(GL_FRONT, GL_EMISSION, [2.0, 2.0, 0.5, 1.0]) 
+    gluSphere(gluNewQuadric(), 0.5, 16, 16)  # Bulb 
+    glMaterialfv(GL_FRONT, GL_EMISSION, [0.0, 0.0, 0.0, 1.0]) 
     glPopMatrix()
-
+    
+    # light inside the bulb
+    if not is_daytime:
+        glPushMatrix()
+        glTranslatef(0, 10, -5)  # Move to the bulb
+        light_position = [0.0, 10.0, -5.0, 1.0]  
+        light_direction = [0.0, -1.0, 0.0]  
+        glLightfv(light_id, GL_POSITION, light_position)
+        glLightfv(light_id, GL_DIFFUSE, [2.0, 2.0, 1.5, 1.0])  
+        glLightfv(light_id, GL_SPOT_DIRECTION, light_direction)
+        glLightf(light_id, GL_SPOT_CUTOFF, 60.0)  
+        glLightf(light_id, GL_SPOT_EXPONENT, 1.0) 
+        glEnable(light_id)  
+        glPopMatrix()
+    
+    glPopMatrix()

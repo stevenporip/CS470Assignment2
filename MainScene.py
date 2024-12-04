@@ -25,14 +25,6 @@ car_pos = [-10, 1.1, 28] # Starting Position for Car
 # Boat Position
 boat_pos = [10,0,145] #Start position for boat
 
-# Define Lighting
-is_daytime = True  # Start with daytime
-ambient_day = [1.0, 1.0, 1.0, 1.0]  
-ambient_night = [0.1, 0.1, 0.2, 1.0] 
-
-diffuse_day = [1.0, 1.0, 1.0, 1.0] 
-diffuse_night = [0.2, 0.2, 0.4, 1.0]  
-
 def opengl():
     glClearColor(0.5, 0.8, 1, 1)  # Set sky color
     glEnable(GL_DEPTH_TEST)
@@ -100,6 +92,14 @@ def lighting():
     glLightfv(GL_LIGHT0, GL_AMBIENT, ambient_day)
     glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse_day)
 
+# Define Lighting
+is_daytime = True  # Start with daytime
+
+ambient_day = [1.2, 1.2, 1.2, 1.0] 
+diffuse_day = [1.2, 1.2, 1.2, 1.0]
+ 
+ambient_night = [0.1, 0.1, 0.2, 1.0] 
+diffuse_night = [0.2, 0.2, 0.4, 1.0]  
 
 def update_lighting():
     global is_daytime  
@@ -163,10 +163,11 @@ def main():
         draw_street()
         draw_perpendicular_street()
         
-        draw_traffic_light(3, 0, -35, 2)
+        draw_traffic_light(0, 0,-35, 2)
         
-        for i in range(-80, 81, 25):  # Adjust range and spacing as needed
-            draw_streetlight(i, 0, -30)
+        streetlight_positions = [(-50, 0, -32), (-25, 0, -32), (25, 0, -32), (50, 0, -32)]
+        for i, pos in enumerate(streetlight_positions):
+            draw_streetlight(pos[0], pos[1], pos[2], GL_LIGHT0 + i, is_daytime)
         
         draw_tree(-85,0,-20)
         draw_tree(-70,0,-23)
